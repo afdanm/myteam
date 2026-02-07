@@ -79,13 +79,17 @@
                                     <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label" for="highlite">Highlite</label>
                                         <div class="col-sm-9">
-                                            <div class="media-body icon-state switch-outline">
-                                                <label class="switch">
-                                                    <input type="checkbox" name="highlite" id="highlite" {{ (isset($article_data))? (old('highlite',$article_data->highlite))? "Checked":"" : (old('highlite'))? "Checked":"" }}><span class="switch-state bg-success"></span>
-                                                </label>
+                                            <div class="form-check form-switch">
+                                                <input 
+                                                    class="form-check-input" 
+                                                    type="checkbox" 
+                                                    name="highlite" 
+                                                    id="highlite"
+                                                    value="1"
+                                                    {{ old('highlite', isset($article_data) ? $article_data->highlite : false) ? 'checked' : '' }}>
                                             </div>
                                             @error('highlite')
-                                                <div class="invalid-feedback">
+                                                <div class="invalid-feedback d-block">
                                                     {{ $message }}
                                                 </div>
                                             @enderror

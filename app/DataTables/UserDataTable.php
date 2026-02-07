@@ -5,10 +5,11 @@ namespace App\DataTables;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Yajra\DataTables\EloquentDataTable;
+use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class UserDataTable extends DataTable
@@ -19,7 +20,7 @@ class UserDataTable extends DataTable
      * @param mixed $query Results from query() method.
      * @return \Yajra\DataTables\DataTableAbstract
      */
-    public function dataTable($query)
+    public function dataTable($query): EloquentDataTable
     {
         $user = Auth::user();
         return datatables()
@@ -43,7 +44,7 @@ class UserDataTable extends DataTable
      * @param \App\Models\User $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(User $model)
+    public function query(User $model): QueryBuilder
     {
         $user = Auth::user();
         if($user->hasRole('Super Admin')){
@@ -57,7 +58,7 @@ class UserDataTable extends DataTable
      *
      * @return \Yajra\DataTables\Html\Builder
      */
-    public function html()
+    public function html(): HtmlBuilder
     {
         return $this->builder()
                     ->setTableId('user-table')
@@ -72,7 +73,7 @@ class UserDataTable extends DataTable
      *
      * @return array
      */
-    protected function getColumns()
+    protected function getColumns(): array
     {
         return [
             Column::make('DT_RowIndex'),
@@ -92,7 +93,7 @@ class UserDataTable extends DataTable
      *
      * @return string
      */
-    protected function filename()
+    protected function filename(): string
     {
         return 'User_' . date('YmdHis');
     }

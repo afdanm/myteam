@@ -19,11 +19,11 @@ class DatabaseSeeder extends Seeder
         $this->call(RolePermissionSeeder::class);
 
         $admin = User::create([
-            'username' => 'iiky',
-            'name' => 'Ahmad Rizki Saefuddin',
-            'email' => 'ahmad.rizki.s@gmail.com',
+            'username' => 'dan',
+            'name' => 'afdan maulana',
+            'email' => 'afdanmaulana1777@gmail.com',
             'email_verified_at' => '2022-08-16 20:57:19',
-            'password' => Hash::make('#3st0CM5#')
+            'password' => Hash::make('#!dan#')
         ]);
 
         $admin->assignRole('Super Admin');
@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'User Website',
             'email' => 'user@gmail.com',
             'email_verified_at' => '2022-08-16 20:57:19',
-            'password' => Hash::make('#3st0CM5#')
+            'password' => Hash::make('#user!#')
         ]);
 
         $user->assignRole('User');

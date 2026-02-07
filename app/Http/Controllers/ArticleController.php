@@ -54,7 +54,7 @@ class ArticleController extends Controller
             $request['highlite'] = false;
         }
 
-        $request['image_path'] = $request->file('image')->store('article-images');
+        $request['image_path'] = $request->file('image')->store('article-images', 'public');
         $request['published_at'] = date('Y-m-d', strtotime($request->published_at));
         $request['user_id'] = auth()->user()->id;
         $request['excerpt'] = Str::limit(strip_tags($request->content), 200);
@@ -111,7 +111,7 @@ class ArticleController extends Controller
             if ($article->image_path) {
                 Storage::delete($article->image_path);
             }
-            $request['image_path'] = $request->file('image')->store('article-images');
+            $request['image_path'] = $request->file('image')->store('article-images', 'public');
         }
         $request['published_at'] = date('Y-m-d', strtotime($request->published_at));
         $request['excerpt'] = Str::limit(strip_tags($request->content), 200);
