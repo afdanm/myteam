@@ -219,3 +219,25 @@ Breadcrumbs::for('setting.edit', function (BreadcrumbTrail $trail,$setting) {
 });
 
 // **************************** END Pengaturan ***************************
+
+// **************************** BOARD ***************************
+
+// Home > Boards
+Breadcrumbs::for('boards.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('Boards', route('boards.index'));
+});
+
+// Home > Boards > [Update]
+Breadcrumbs::for('boards.edit', function (BreadcrumbTrail $trail, $board) {
+    $trail->parent('boards.index');
+    $trail->push('Update [' . $board->title . ']', route('boards.edit', $board));
+});
+
+// Home > Boards > Create
+Breadcrumbs::for('boards.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('boards.index');
+    $trail->push('Create', route('boards.create'));
+});
+
+// **************************** END BOARD ***************************

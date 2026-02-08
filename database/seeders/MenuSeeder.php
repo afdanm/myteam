@@ -100,5 +100,14 @@ class MenuSeeder extends Seeder
             'status' => '1',
             'sort' => '1',
         ]);
+
+        Menu::create([
+            'nama_menu' => 'Board',
+            'icon' => 'book-open',
+            'href' => '/boards',
+            'permission_group_id' => 9,
+            'status' => '1',
+            'sort' => '3',
+        ]);
     }
 }

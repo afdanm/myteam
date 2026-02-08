@@ -25,6 +25,7 @@ class RolePermissionSeeder extends Seeder
             'Article Category',
             'Article',
             'Setting',
+            'Board',
         ];
 
         foreach ($permissiongroups as $permissiongroup) {
@@ -71,6 +72,10 @@ class RolePermissionSeeder extends Seeder
             'Setting Create-8',
             'Setting Update-8',
             'Setting Delete-8',
+            'Board Access-9',
+            'Board Create-9',
+            'Board Update-9',
+            'Board Delete-9',
         ];
 
         foreach ($permissions as $permission) {
