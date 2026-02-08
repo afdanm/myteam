@@ -46,16 +46,38 @@
                                         <td>{{ \Illuminate\Support\Str::limit(strip_tags($board->description), 100) }}</td>
                                         @canany(['Board Update', 'Board Delete'])
                                             <td>
+                                                {{-- View Cards --}}
+                                                <a href="{{ route('boards.cards.index', $board) }}" class="txt-primary">
+                                                    <i data-feather="layers"></i>
+                                                </a>
+
                                                 @can('Board Update')
-                                                    <a href="{{ url("/boards/".$board->slug."/edit") }}" class="txt-info"><i data-feather="edit-3"></i></a>
+                                                    <a href="{{ url("/boards/".$board->slug."/edit") }}" class="txt-info">
+                                                        <i data-feather="edit-3"></i>
+                                                    </a>
                                                 @endcan
+
                                                 @can('Board Delete')
                                                     <form method="post" action="{{ url("/boards/".$board->slug) }}" id="form-delete-{{ $loop->iteration }}" class="d-inline">
                                                         @csrf    
                                                         @method('delete')
-                                                        <a href="javascript:void(0)" onclick="swal({ title: 'Are you sure?', text: 'Once deleted, you will not be able to data!', icon: 'warning', buttons: true, dangerMode: true, }).then((willDelete) => { if (willDelete) { document.getElementById('form-delete-{{ $loop->iteration }}').submit(); } });" class="txt-danger"><i data-feather="trash"></i></a>
+                                                        <a href="javascript:void(0)"
+                                                        onclick="swal({
+                                                            title: 'Are you sure?',
+                                                            text: 'Once deleted, you will not be able to data!',
+                                                            icon: 'warning',
+                                                            buttons: true,
+                                                            dangerMode: true,
+                                                        }).then((willDelete) => {
+                                                            if (willDelete) {
+                                                                document.getElementById('form-delete-{{ $loop->iteration }}').submit();
+                                                            }
+                                                        });"
+                                                        class="txt-danger">
+                                                            <i data-feather="trash"></i>
+                                                        </a>
                                                     </form>
-                                                @endcan                                         
+                                                @endcan
                                             </td>
                                         @endcanany
                                     </tr>

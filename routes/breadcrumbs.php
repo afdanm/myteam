@@ -241,3 +241,26 @@ Breadcrumbs::for('boards.create', function (BreadcrumbTrail $trail) {
 });
 
 // **************************** END BOARD ***************************
+
+// **************************** CARD ***************************
+
+// Home > Boards > [Board Title] > Cards
+Breadcrumbs::for('boards.cards.index', function (BreadcrumbTrail $trail, $board) {
+    $trail->parent('boards.index');
+    $trail->push($board->title, route('boards.edit', $board));
+    $trail->push('Cards', route('boards.cards.index', $board));
+});
+
+// Home > Boards > [Board Title] > Cards > Create
+Breadcrumbs::for('boards.cards.create', function (BreadcrumbTrail $trail, $board) {
+    $trail->parent('boards.cards.index', $board);
+    $trail->push('Create', route('boards.cards.create', $board));
+});
+
+// Home > Boards > [Board Title] > Cards > Update
+Breadcrumbs::for('boards.cards.edit', function (BreadcrumbTrail $trail, $board, $card) {
+    $trail->parent('boards.cards.index', $board);
+    $trail->push('Update [' . $card->title . ']', route('boards.cards.edit', [$board, $card]));
+});
+
+// **************************** END CARD ***************************

@@ -45,6 +45,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         'boards' => 'board:slug',
     ]);
 
+    Route::resource('/boards.cards', App\Http\Controllers\CardController::class)->parameters([
+    'boards' => 'board:slug',
+    ]);
+
     Route::prefix('setting')->group(function () {
         Route::get('/',[App\Http\Controllers\SettingController::class, 'index'])->name('setting.index');
         Route::get('/create',[App\Http\Controllers\SettingController::class, 'create'])->name('setting.create');

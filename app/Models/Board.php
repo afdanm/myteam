@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use App\Models\Card;
 
 class Board extends Model
 {
@@ -22,5 +23,9 @@ class Board extends Model
                 'source' => 'title',
             ],
         ];
+    }
+    public function cards()
+    {
+        return $this->hasMany(Card::class);
     }
 }
