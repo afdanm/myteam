@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Board;
 use App\Models\Card;
 use App\Models\ListItem;
+use App\Traits\ListAuthorizable;
 use App\Http\Requests\StoreListRequest;
 use App\Http\Requests\UpdateListRequest;
 
 class ListController extends Controller
 {
+    use ListAuthorizable;
     public function index(Board $board, Card $card)
     {
         $this->data['board'] = $board;

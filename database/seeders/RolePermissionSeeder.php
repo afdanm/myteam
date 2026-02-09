@@ -26,6 +26,10 @@ class RolePermissionSeeder extends Seeder
             'Article',
             'Setting',
             'Board',
+            'Card',
+            'List',
+            'Chat',
+            'board user',
         ];
 
         foreach ($permissiongroups as $permissiongroup) {
@@ -76,6 +80,20 @@ class RolePermissionSeeder extends Seeder
             'Board Create-9',
             'Board Update-9',
             'Board Delete-9',
+            'Card Access-9',
+            'Card Create-9',
+            'Card Update-9',
+            'Card Delete-9',
+            'List Access-9',
+            'List Create-9',
+            'List Update-9',
+            'List Delete-9',
+            'Chat Access-9',
+            'Chat Create-9',
+            'Chat Update-9',
+            'Chat Delete-9',
+            'board user Access-9',
+            'board user Create-9',
         ];
 
         foreach ($permissions as $permission) {
@@ -96,5 +114,42 @@ class RolePermissionSeeder extends Seeder
             'guard_name' => 'web'
         ]);
         $role->givePermissionTo('Article Access');
+
+        $role->givePermissionTo('Board Access');
+
+        $role->givePermissionTo('Board Create');
+
+        $role->givePermissionTo('Board Update');
+
+        $role->givePermissionTo('Board Delete');
+
+        $role->givePermissionTo('Card Access');
+
+        $role->givePermissionTo('Card Create');
+
+        $role->givePermissionTo('Card Update');
+
+        $role->givePermissionTo('Card Delete');
+
+        $role->givePermissionTo('List Access');
+
+        $role->givePermissionTo('List Create');
+
+        $role->givePermissionTo('List Update');
+
+        $role->givePermissionTo('List Delete');
+
+        $role->givePermissionTo('Chat Access');
+
+        $role->givePermissionTo('Chat Create');
+
+        $role->givePermissionTo('Chat Update');
+
+        $role->givePermissionTo('Chat Delete');
+
+        $role->givePermissionTo('board user Access');
+
+        $role->givePermissionTo('board user Create');
+
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Traits\BoardAuthorizable;
 use App\Models\Board;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreBoardRequest;
 use App\Http\Requests\updateBoardRequest;
 use Cviebrock\EloquentSluggable\Services\SlugService;
@@ -18,11 +19,21 @@ class BoardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+public function index()
+{
+    $user = auth()->user();
+
+    if ($user->hasRole('Super Admin')) {
         $this->data['boards'] = Board::all();
-        return view('boards.index', $this->data);
+    } else {
+        $this->data['boards'] = Board::whereHas('users', function ($q) use ($user) {
+            $q->where('users.id', $user->id);
+        })->get();
     }
+
+    return view('boards.index', $this->data);
+}
+
 
     /**
      * Show the form for creating a new resource.
@@ -43,10 +54,18 @@ class BoardController extends Controller
      */
     public function store(StoreBoardRequest $request)
     {
-        Board::create($request->all());
+        $board = Board::create($request->validated());
 
-        return redirect('boards')->with('success', 'New Board has been created!');
+        // attach creator sebagai owner
+        $board->users()->attach(auth()->id(), [
+            'role' => 'owner'
+        ]);
+
+        return redirect()
+            ->route('boards.index')
+            ->with('success', 'New Board has been created!');
     }
+
 
     /**
      * Show the form for editing the specified resource.

@@ -63,6 +63,20 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->name('boards.chat.fetch');
 
 
+    Route::prefix('boards/{board}')
+    ->middleware('auth')
+    ->group(function () {
+
+        Route::get('/users', [App\Http\Controllers\BoardUserController::class, 'index'])
+            ->name('boards.users.index');
+
+        Route::post('/users', [App\Http\Controllers\BoardUserController::class, 'store'])
+            ->name('boards.users.store');
+
+        Route::delete('/users/{user}', [App\Http\Controllers\BoardUserController::class, 'destroy'])
+            ->name('boards.users.destroy');
+    });
+
 
     Route::prefix('setting')->group(function () {
         Route::get('/',[App\Http\Controllers\SettingController::class, 'index'])->name('setting.index');

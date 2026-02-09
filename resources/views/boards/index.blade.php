@@ -82,6 +82,13 @@
                                                 <a href="{{ route('boards.chat', $board) }}" class="txt-success" title="Chat Board">
                                                     <i data-feather="message-circle"></i>
                                                 </a>
+
+                                                <a href="{{ route('boards.users.index', $board) }}"
+                                                class="txt-warning"
+                                                title="Manage Users">
+                                                    <i data-feather="users"></i>
+                                                </a>
+                                                
                                             </td>
                                         @endcanany
                                     </tr>

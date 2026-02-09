@@ -289,3 +289,9 @@ Breadcrumbs::for('boards.cards.lists.edit', function (BreadcrumbTrail $trail, $b
 });
 
 // **************************** END LIST ***************************
+
+Breadcrumbs::for('boards.users.index', function ($trail, $board) {
+    $trail->parent('boards.index');
+    $trail->push($board->title, route('boards.edit', $board));
+    $trail->push('Users', route('boards.users.index', $board));
+});
