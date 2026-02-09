@@ -13,4 +13,10 @@ class Card extends Model
     {
         return $this->belongsTo(Board::class);
     }
+
+    public function lists()
+    {
+        return $this->hasMany(ListItem::class);
+    }
+
 }

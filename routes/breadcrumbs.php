@@ -264,3 +264,28 @@ Breadcrumbs::for('boards.cards.edit', function (BreadcrumbTrail $trail, $board, 
 });
 
 // **************************** END CARD ***************************
+
+// **************************** LIST ***************************
+
+// Home > Boards > [Board] > Cards > [Card] > Lists
+Breadcrumbs::for('boards.cards.lists.index', function (BreadcrumbTrail $trail, $board, $card) {
+    $trail->parent('boards.cards.index', $board);
+    $trail->push($card->name, route('boards.cards.edit', [$board, $card]));
+    $trail->push('Lists', route('boards.cards.lists.index', [$board, $card]));
+});
+
+// Home > Boards > [Board] > Cards > [Card] > Lists > Create
+Breadcrumbs::for('boards.cards.lists.create', function (BreadcrumbTrail $trail, $board, $card) {
+    $trail->parent('boards.cards.lists.index', $board, $card);
+    $trail->push('Create', route('boards.cards.lists.create', [$board, $card]));
+});
+// Home > Boards > [Board] > Cards > [Card] > Lists > Update
+Breadcrumbs::for('boards.cards.lists.edit', function (BreadcrumbTrail $trail, $board, $card, $list) {
+    $trail->parent('boards.cards.lists.index', $board, $card);
+    $trail->push(
+        'Update [' . $list->content . ']',
+        route('boards.cards.lists.edit', [$board, $card, $list])
+    );
+});
+
+// **************************** END LIST ***************************
