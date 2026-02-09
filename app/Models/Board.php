@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use App\Models\Card;
+use App\Models\Chat;
 
 class Board extends Model
 {
@@ -28,4 +29,10 @@ class Board extends Model
     {
         return $this->hasMany(Card::class);
     }
+
+    public function chats()
+    {
+        return $this->hasMany(Chat::class);
+    }
+
 }

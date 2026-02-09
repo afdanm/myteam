@@ -78,6 +78,10 @@
                                                         </a>
                                                     </form>
                                                 @endcan
+
+                                                <a href="{{ route('boards.chat', $board) }}" class="txt-success" title="Chat Board">
+                                                    <i data-feather="message-circle"></i>
+                                                </a>
                                             </td>
                                         @endcanany
                                     </tr>

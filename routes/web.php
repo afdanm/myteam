@@ -53,6 +53,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     'boards' => 'board:slug',
     ]);
 
+    Route::get('/boards/{board:slug}/chat', [App\Http\Controllers\BoardChatController::class, 'index'])
+    ->name('boards.chat');
+
+    Route::post('/boards/{board:slug}/chat', [App\Http\Controllers\BoardChatController::class, 'store'])
+        ->name('boards.chat.store');
+
+    Route::get('/boards/{board:slug}/chat/fetch', [App\Http\Controllers\BoardChatController::class, 'fetch'])
+        ->name('boards.chat.fetch');
+
+
 
     Route::prefix('setting')->group(function () {
         Route::get('/',[App\Http\Controllers\SettingController::class, 'index'])->name('setting.index');
