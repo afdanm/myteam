@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Chat extends Model
 {
     protected $fillable = [
+        'board_id',
         'nama',
         'pesan',
         'ip',

@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 use Spatie\Permission\Traits\HasRoles;
 use App\Models\Board;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
@@ -54,6 +55,14 @@ class User extends Authenticatable implements MustVerifyEmail
             ->withPivot('role')
             ->withTimestamps();
     }
+        public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
 
+        public function getJWTCustomClaims()
+    {
+        return [];
+    }
 
 }

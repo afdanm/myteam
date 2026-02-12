@@ -19,20 +19,20 @@ class BoardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-public function index()
-{
-    $user = auth()->user();
+    public function index()
+    {
+        $user = auth()->user();
 
-    if ($user->hasRole('Super Admin')) {
-        $this->data['boards'] = Board::all();
-    } else {
-        $this->data['boards'] = Board::whereHas('users', function ($q) use ($user) {
-            $q->where('users.id', $user->id);
-        })->get();
+        if ($user->hasRole('Super Admin')) {
+            $this->data['boards'] = Board::all();
+        } else {
+            $this->data['boards'] = Board::whereHas('users', function ($q) use ($user) {
+                $q->where('users.id', $user->id);
+            })->get();
+        }
+
+        return view('boards.index', $this->data);
     }
-
-    return view('boards.index', $this->data);
-}
 
 
     /**
